@@ -197,7 +197,8 @@ export async function fetchCustomers() {
   }
 }
 
-export async function fetchFilteredCustomers(query: string) {
+export async function fetchFilteredCustomers(query?: string) {
+  query = (query ? query: "")
   try {
     const data = await sql<CustomersTableType>`
 		SELECT
