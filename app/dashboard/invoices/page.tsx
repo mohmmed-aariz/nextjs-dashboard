@@ -23,7 +23,7 @@ export default async function Page({
 }) {
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
-  const totalPages = await fetchInvoicesPages(query);
+  const totalPages = await fetchInvoicesPages(query);  // this is creating a delay in loading the website so add suspense to it and line 41
 
   return (
     <div className="w-full">
@@ -34,7 +34,7 @@ export default async function Page({
         <Search placeholder="Search invoices..." />
         <CreateInvoice />
       </div>
-       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
+      <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
         <Table query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
